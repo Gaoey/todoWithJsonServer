@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import { AppRegistry } from 'react-native'
-import todoReducer from './reducer/reducer'
+import todoReducer from './reducer/index'
 import Router from './router'
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger'
