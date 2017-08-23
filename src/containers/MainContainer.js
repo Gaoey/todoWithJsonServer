@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { Container, Content } from 'native-base'
 import PropTypes from 'prop-types'
 
-import actionCreator from '../actions/index'
-import { fetchTodo } from '../actions/index'
+import { fetchTodo, addTodo } from '../actions/index'
 import AddTodo from '../components/AddTodo'
 import TodoList from '../components/todoList/TodoList';
 
@@ -16,11 +15,12 @@ class MainContainer extends Component {
     }
 
     render() {
+        const { addTodo, data } = this.props
         return (
             <Container>
                 <Content>
-                    <AddTodo addTodo={() => this.props.addTodo} />
-                    <TodoList todos={this.props.data.todos} />
+                    <AddTodo addTodo={addTodo} />
+                    <TodoList todos={data.todos} />
                 </Content>
             </Container>
         )
@@ -31,14 +31,17 @@ MainContainer.propTypes = {
     data: PropTypes.shape({
         todos: PropTypes.arrayOf(
             PropTypes.shape({
-                id: PropTypes.number.isRequired,
-                completed: PropTypes.bool.isRequired,
-                text: PropTypes.string.isRequired
+                id: PropTypes.number,
+                completed: PropTypes.bool,
+                text: PropTypes.string
             }).isRequired
         ).isRequired,
         error: PropTypes.string,
         loading: PropTypes.bool.isRequired
-    }).isRequired
+    }).isRequired,
+
+    fetchTodo: PropTypes.func.isRequired,
+    addTodo: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -52,13 +55,13 @@ const mapDispatchToProps = dispatch => {
         fetchTodo: () => {
             return dispatch(fetchTodo())
         },
-        addTodo: (id, text) => {
-            return dispatch(addTodo(id, text))
+        addTodo: (text) => {
+            return dispatch(addTodo(text))
         }
     }
 }
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    { fetchTodo, addTodo }
 )(MainContainer);

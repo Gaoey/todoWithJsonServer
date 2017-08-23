@@ -9,6 +9,7 @@ import {
     Icon,
     Content
 } from 'native-base'
+import { Actions } from 'react-native-router-flux'
 
 const Todo = ({ id, text, completed }) => {
     return (
@@ -25,7 +26,7 @@ const Todo = ({ id, text, completed }) => {
                 </Button>
             }
             left={
-                <Button info>
+                <Button info onPress={() => Actions.edit({ id, text })} >
                     <Icon active name="redo" />
                 </Button>
             }

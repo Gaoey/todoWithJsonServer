@@ -4,7 +4,7 @@ import {
     Router,
 } from 'react-native-router-flux'
 import Main from './containers/MainContainer'
-import Edit from './components/EditTodo';
+import Edit from './containers/EditTodoContainer';
 
 class RouterTodo extends Component {
     render() {

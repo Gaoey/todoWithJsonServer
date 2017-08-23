@@ -5,7 +5,8 @@ class AddTodo extends Component {
 
     handleKeyPress = (event) => {
         if (event.nativeEvent.key === 'Enter') {
-            console.log(this.inputText)
+            let text = this.inputText.wrappedInstance._lastNativeText
+            this.props.addTodo(text)
         }
     }
 

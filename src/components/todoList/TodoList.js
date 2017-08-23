@@ -6,8 +6,9 @@ import Todo from './Todo'
 
 
 class TodoList extends Component {
+
     render() {
-        todos = this.props.todos
+        const { todos } = this.props
         return (
             <Content>
                 {todos.map((todo) => {
