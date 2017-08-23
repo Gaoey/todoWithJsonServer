@@ -1,21 +1,12 @@
 {
   "todos": [
     {
-      "text": "json-server--hhahah",
-      "id": 1
-    },
-    {
-      "text": "Test-what",
-      "id": 2
-    },
-    {
-      "text": "Haha",
-      "completed": false,
-      "id": 3
-    },
-    {
       "text": "Gaoey",
       "id": 4
+    },
+    {
+      "text": "Haghaha wahtt",
+      "id": 5
     }
   ]
 }

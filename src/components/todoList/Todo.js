@@ -11,7 +11,7 @@ import {
 } from 'native-base'
 import { Actions } from 'react-native-router-flux'
 
-const Todo = ({ id, text, completed }) => {
+const Todo = ({ id, text, completed, onClickDelete }) => {
     return (
         <SwipeRow
             body={
@@ -21,7 +21,7 @@ const Todo = ({ id, text, completed }) => {
                 </ListItem>
             }
             right={
-                <Button danger>
+                <Button danger onPress={() => onClickDelete(id)}>
                     <Icon active name="trash" />
                 </Button>
             }
