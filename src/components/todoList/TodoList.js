@@ -8,7 +8,7 @@ import Todo from './Todo'
 class TodoList extends Component {
 
     render() {
-        const { todos, onClickDelete } = this.props
+        const { todos, onClickDelete, onClickToggle} = this.props
         return (
             <Content>
                 {todos.map((todo) => {
@@ -16,6 +16,7 @@ class TodoList extends Component {
                         return <Todo key={todo.id}
                             {...todo}
                             onClickDelete={onClickDelete}
+                            onClickToggle={onClickToggle}
                         />
                     }
                 }

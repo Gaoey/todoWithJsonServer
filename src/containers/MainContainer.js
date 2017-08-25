@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Container, Content } from 'native-base'
 import PropTypes from 'prop-types'
 
-import { fetchTodo, addTodo, deleteTodo } from '../actions/index'
+import { fetchTodo, addTodo, deleteTodo, toggleTodo } from '../actions/index'
 import AddTodo from '../components/AddTodo'
 import TodoList from '../components/todoList/TodoList';
 
@@ -15,12 +15,12 @@ class MainContainer extends Component {
     }
 
     render() {
-        const { addTodo, data, deleteTodo } = this.props
+        const { addTodo, data, deleteTodo, toggleTodo } = this.props
         return (
             <Container>
                 <Content>
                     <AddTodo addTodo={addTodo} />
-                    <TodoList todos={data.todos} onClickDelete={deleteTodo}/>
+                    <TodoList todos={data.todos} onClickDelete={deleteTodo} onClickToggle={toggleTodo}/>
                 </Content>
             </Container>
         )
@@ -61,11 +61,14 @@ const mapDispatchToProps = dispatch => {
         },
         deleteTodo: (id) =>{
             return dispatch(deleteTodo(id))
+        },
+        toggleTodo: (state) => {
+            return dispatch(toggleTodo(state))
         }
     }
 }
 
 export default connect(
     mapStateToProps,
-    { fetchTodo, addTodo, deleteTodo }
+    mapDispatchToProps
 )(MainContainer);

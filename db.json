@@ -1,12 +1,19 @@
 {
   "todos": [
     {
-      "text": "Gaoey",
-      "id": 4
+      "text": "Testtt",
+      "completed": true,
+      "id": 1
     },
     {
-      "text": "Haghaha wahtt",
-      "id": 5
+      "text": "Fuck",
+      "completed": false,
+      "id": 2
+    },
+    {
+      "text": "Haha",
+      "completed": true,
+      "id": 3
     }
   ]
 }

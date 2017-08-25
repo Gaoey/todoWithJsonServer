@@ -1,5 +1,19 @@
 import {
-    FETCH_TODO, FETCH_TODO_SUCCESS, FETCH_TODO_FAILURE, ADD_TODO, ADD_TODO_SUCCESS, ADD_TODO_FAILURE, EDIT_TODO, EDIT_TODO_SUCCESS, EDIT_TODO_FAILURE, DELETE_TODO, DELETE_TODO_SUCCESS, DELETE_TODO_FAILURE
+    FETCH_TODO, 
+    FETCH_TODO_SUCCESS, 
+    FETCH_TODO_FAILURE, 
+    ADD_TODO, 
+    ADD_TODO_SUCCESS, 
+    ADD_TODO_FAILURE, 
+    EDIT_TODO, 
+    EDIT_TODO_SUCCESS, 
+    EDIT_TODO_FAILURE, 
+    DELETE_TODO, 
+    DELETE_TODO_SUCCESS, 
+    DELETE_TODO_FAILURE,
+    TOGGLE_TODO,
+    TOGGLE_TODO_SUCCESS,
+    TOGGLE_TODO_FAILURE
 } from '../constants/actionConstant.js'
 import { JSON_SERVER_URL } from '../constants/URLConstant'
 import { Actions } from 'react-native-router-flux'
@@ -152,3 +166,43 @@ export const deleteTodo = (id) => (dispatch) => {
 
 }
 
+//toggle
+export const toggleTodoSuccess = (blob) => {
+    return {
+        type: TOGGLE_TODO_SUCCESS,
+        payload: blob
+    }
+}
+
+export const toggleTodoFailure = (error) => {
+    alert("Something got error when you delete")
+    return {
+        type: TOGGLE_TODO_FAILURE,
+        payload: error
+    }
+}
+
+export const toggleTodo = (state) => (dispatch) => {
+    const request = fetch(`${JSON_SERVER_URL}/${state.id}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            ...state,
+            completed: !state.completed,
+        })
+    }).then((response) => response.json())
+        .then((success) => {
+            return dispatch(toggleTodoSuccess(success))
+        })
+        .catch((error) => {
+            return dispatch(toggleTodoFailure(error))
+        });
+
+    return {
+        type: TOGGLE_TODO,
+        payload: request
+    }
+
+}

@@ -11,12 +11,13 @@ import {
 } from 'native-base'
 import { Actions } from 'react-native-router-flux'
 
-const Todo = ({ id, text, completed, onClickDelete }) => {
+const Todo = (state) => {
+    const { id, text, completed, onClickDelete, onClickToggle } = state
     return (
         <SwipeRow
             body={
                 <ListItem>
-                    <CheckBox style={{ marginRight: 20 }} checked={completed} />
+                    <CheckBox style={{ marginRight: 20 }} checked={completed} onPress={()=>onClickToggle(state)}/>
                     <Text>{text}</Text>
                 </ListItem>
             }
